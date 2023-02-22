@@ -4,15 +4,18 @@ import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import pensieve from "./images/pensieve.png";
+import useStyles from "./styles";
 
 const App = () => {
+  const classes = useStyles();
+
   return (
-    <Container maxidth="lg">
-      <AppBar position="static" color="inherit">
-        <Typography variant="h2" align="center">
+    <Container maxWidth="lg">
+      <AppBar className={classes.AppBar} position="static" color="inherit">
+        <Typography className={classes.heading} variant="h2" align="center">
           Pensieve
         </Typography>
-        <img src={pensieve} alt="pensieve" height="600" />
+        <img className={classes.image} src={pensieve} alt="icon" height="60" />
       </AppBar>
       <Grow in>
         <Container>
