@@ -1,17 +1,22 @@
-import React from "react";
-import Post from "./Post/Post";
+import React from 'react';
+import { ThemeProvider } from '@mui/styles'
+import { createTheme } from '@mui/material'
 
-import useStyles from './styles'
+import Post from './Post/Post';
 
 const Posts: React.FC = () => {
-  const classes = useStyles();
-  return (
-    <>
-      <div>POSTS</div>
-      <Post />
-      <Post />
-    </>
-  );
+  const theme = createTheme();
+    
+    return (
+        <ThemeProvider theme={theme}>
+            <>
+              <div>POSTS</div>
+              <Post />
+              <Post />
+            </>
+        </ThemeProvider>
+        
+    );
 };
 
 export default Posts;

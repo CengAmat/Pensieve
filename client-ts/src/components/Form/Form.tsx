@@ -1,12 +1,15 @@
 import React from 'react';
-
-import useStyles from './styles';
+import { ThemeProvider } from '@mui/styles'
+import { createTheme } from '@mui/material'
 
 const Form: React.FC = () => {
-    const classes = useStyles();
+    const theme = createTheme();
     
     return (
-        <div>Form </div>
+        <ThemeProvider theme={theme}>
+            <div>Form </div>
+        </ThemeProvider>
+        
     )
 }
 

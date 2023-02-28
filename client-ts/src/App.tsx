@@ -11,7 +11,7 @@ const App: React.FC = () => {
   
   return (
     <Container maxWidth="lg">
-      <AppBar className={classes.AppBar} position="static" color="inherit">
+      <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className={classes.heading} variant="h2" align="center">
           Pensieve
         </Typography>
