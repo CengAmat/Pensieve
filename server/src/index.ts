@@ -11,7 +11,7 @@ app.listen(3000)
 
 app.use("/posts", postRoutes);
 
-// app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.json({ limit: "30mb" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
@@ -20,10 +20,7 @@ const CONNECTION_URL: string =
 const PORT = process.env.PORT || 5001;
 
 mongoose
-  .connect(CONNECTION_URL, {
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
-  })
+  .connect(CONNECTION_URL)
   .then(() =>
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
   )
