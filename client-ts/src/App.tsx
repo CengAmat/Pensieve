@@ -1,20 +1,23 @@
 import React, { useEffect } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
-import { useDispatch } from "react-redux";
 
-import { getPosts } from "./actions/posts";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import pensieve from "./images/pensieve.png";
 import useStyles from "./styles";
 
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { incremented, incrementByAmount } from "./features/posts/counterSlice";
+
 const App: React.FC = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+  const count = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
+
+  function handleClick() {
+    dispatch(incrementByAmount(3));
+  }
 
   return (
     <Container maxWidth="lg">
@@ -32,6 +35,7 @@ const App: React.FC = () => {
             alignItems="stretch"
             spacing={3}
           >
+            <button onClick={handleClick}>Count is: {count}</button>
             <Grid item xs={12} sm={7}>
               <Posts />
             </Grid>
