@@ -1,4 +1,5 @@
 import { Request, Response, RequestHandler } from 'express';
+
 import PostMessage from "../models/postMessage";
 
 export const getPosts = async (req: Request, res: Response) => {
