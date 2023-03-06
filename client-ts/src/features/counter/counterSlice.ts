@@ -20,7 +20,7 @@ const counterSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        incremented: state => {
+        increment: state => {
             // it's oky to do this because Immer makes it work
             // under the hood
             state.value++
@@ -32,5 +32,5 @@ const counterSlice = createSlice({
 })
 
 // Action Creators => function that makes and returns action object
-export const { incremented, incrementByAmount } = counterSlice.actions;
+export const { increment, incrementByAmount } = counterSlice.actions;
 export default counterSlice.reducer;

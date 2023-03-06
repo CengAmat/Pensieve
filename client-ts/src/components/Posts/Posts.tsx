@@ -1,18 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/material";
 
 import Post from "./Post/Post";
-import { PostsState } from "../../reducers/posts";
+import { useGetPostsQuery } from "../../features/posts/postSlice";
 
 const Posts: React.FC = () => {
-  const posts = useSelector<PostsState, PostsState["posts"]>(
-    (state) => state.posts
-  );
-  const theme = createTheme();
+  const { data = [], isFetching } = useGetPostsQuery();
+  console.log(data);
 
-  console.log(posts);
+  const theme = createTheme();
 
   return (
     <ThemeProvider theme={theme}>

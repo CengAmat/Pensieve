@@ -1,10 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import counterReducer from '../features/posts/counterSlice'
+import counterReducer from '../features/counter/counterSlice';
+import { apiSlice } from '../features/posts/postSlice';
 
 // Create Redux Store
 export const store = configureStore({
-    reducer: { counter: counterReducer } // this will automaticly call combineReducers - No need combineReducers any more - 
+    reducer: {      // this will automaticly call combineReducers - No need combineReducers any more - 
+        counter: counterReducer,
+        [apiSlice.reducerPath]: apiSlice.reducer
+    },
+    middleware: (getDefaultMiddleware) => {
+        return getDefaultMiddleware().concat(apiSlice.middleware);
+    }
 });
 
 export type AppDispatch = typeof store.dispatch;
