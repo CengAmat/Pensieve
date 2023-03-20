@@ -23,16 +23,26 @@ const Form = () => {
     return <div>Sending!..</div>;
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     try {
+      e.preventDefault();
       await addPost(post).unwrap();
       setPost(initialValue);
+      clear();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const clear = () => {};
+  const clear = () => {
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -94,6 +104,7 @@ const Form = () => {
           color="primary"
           size="large"
           type="submit"
+          fullWidth
         >
           Submit
         </Button>
@@ -102,6 +113,7 @@ const Form = () => {
           color="secondary"
           size="small"
           onClick={clear}
+          fullWidth
         >
           Clear
         </Button>
