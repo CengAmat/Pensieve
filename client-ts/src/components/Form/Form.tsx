@@ -7,16 +7,18 @@ import { useCreatePostMutation, Post } from "../../features/posts/postSlice";
 const Form = () => {
   const classes = makeStyles();
 
-  const [postData, setPostData] = useState({
+  const initialValue = {
     creator: "",
     title: "",
     message: "",
     tags: "",
     selectedFile: "",
-  });
+  };
 
-  const initialValue = { post: "" };
-  const [post, setPost] = useState<Pick<Post, "post">>(initialValue);
+  const [post, setPost] =
+    useState<
+      Pick<Post, "creator" | "title" | "message" | "tags" | "selectedFile">
+    >(initialValue);
   const [addPost, { isLoading }] = useCreatePostMutation();
 
   if (isLoading) {
@@ -35,7 +37,7 @@ const Form = () => {
   };
 
   const clear = () => {
-    setPostData({
+    setPost({
       creator: "",
       title: "",
       message: "",
@@ -58,44 +60,38 @@ const Form = () => {
           variant="outlined"
           label="Creator"
           fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
+          value={post.creator}
+          onChange={(e) => setPost({ ...post, creator: e.target.value })}
         />
         <TextField
           name="title"
           variant="outlined"
           label="Title"
           fullWidth
-          value={postData.title}
-          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+          value={post.title}
+          onChange={(e) => setPost({ ...post, title: e.target.value })}
         />
         <TextField
           name="message"
           variant="outlined"
           label="Message"
           fullWidth
-          value={postData.message}
-          onChange={(e) =>
-            setPostData({ ...postData, message: e.target.value })
-          }
+          value={post.message}
+          onChange={(e) => setPost({ ...post, message: e.target.value })}
         />
         <TextField
           name="tags"
           variant="outlined"
           label="Tags"
           fullWidth
-          value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          value={post.tags}
+          onChange={(e) => setPost({ ...post, tags: e.target.value })}
         />
         <div className={classes.fileInput}>
           <FileBase
             type="file"
             multiple={false}
-            onDone={({ base64 }) =>
-              setPostData({ ...postData, selectedFile: base64 })
-            }
+            onDone={({ base64 }) => setPost({ ...post, selectedFile: base64 })}
           />
         </div>
         <Button

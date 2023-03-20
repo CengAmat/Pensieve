@@ -1,7 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export interface Post {
-    post: string
+    creator: string,
+    title: string,
+    message: string,
+    tags: string,
+    selectedFile: string,
 }
 
 type PostsResponse = Post[]
