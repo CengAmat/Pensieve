@@ -4,27 +4,29 @@ export interface PostsState {
     posts: string[];
 }
 
-const initialState = {
-    posts: []
-} as PostsState;
+export interface Post {
+    post: string
+}
+
+type PostsResponse = Post[]
 
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5001',
-        mode: 'cors',
-        prepareHeaders: (headers) => {
-            headers.set('Access-Control-Allow-Headers', '*');
-            return headers;
-        }
+        baseUrl: 'http://localhost:5001/',
     }),
     endpoints: (builder) => ({
-        getPosts: builder.query<PostsState[], number | void>({
-            query: () => ({
-                url: `/posts`,
+        getPosts: builder.query<PostsResponse, number | void>({
+            query: () => 'posts'
+        }),
+        createPost: builder.mutation<Post, Partial<Post>>({
+            query: (body) => ({
+                url: `posts`,
+                method: 'POST',
+                body,
             })
         })
     })
 });
 
-export const { useGetPostsQuery } = apiSlice;
+export const { useGetPostsQuery, useCreatePostMutation } = apiSlice;

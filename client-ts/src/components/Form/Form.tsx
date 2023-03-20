@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import FileBase from "react-file-base64";
 import makeStyles from "./styles";
+import { useCreatePostMutation, Post } from "../../features/posts/postSlice";
 
-const Form: React.FC = () => {
+const Form = () => {
   const classes = makeStyles();
 
   const [postData, setPostData] = useState({
@@ -14,7 +15,22 @@ const Form: React.FC = () => {
     selectedFile: "",
   });
 
-  const handleSubmit = () => {};
+  const initialValue = { post: "" };
+  const [post, setPost] = useState<Pick<Post, "post">>(initialValue);
+  const [addPost, { isLoading }] = useCreatePostMutation();
+
+  if (isLoading) {
+    return <div>Sending!..</div>;
+  }
+
+  const handleSubmit = async () => {
+    try {
+      await addPost(post).unwrap();
+      setPost(initialValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const clear = () => {};
 

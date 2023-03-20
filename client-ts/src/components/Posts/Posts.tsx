@@ -6,8 +6,15 @@ import Post from "./Post/Post";
 import { useGetPostsQuery } from "../../features/posts/postSlice";
 
 const Posts: React.FC = () => {
-  const { data = [], isFetching } = useGetPostsQuery();
-  console.log(data);
+  const { data: posts, isLoading } = useGetPostsQuery();
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (!posts) {
+    return <div>No posts :(</div>;
+  }
 
   const theme = createTheme();
 

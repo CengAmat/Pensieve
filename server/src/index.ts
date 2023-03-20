@@ -11,11 +11,11 @@ app.use(bodyParser.json({ limit: "30mb" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.get('/posts', (req: any, res: any) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3001');
-})
-
 app.use("/posts", postRoutes);
+
+app.get('/posts', (req: any, res: any) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+})
 
 const CONNECTION_URL: string =
   "mongodb+srv://cengamat:cengamat@cluster-2g47mmc1.sridj.mongodb.net/?retryWrites=true&w=majority";

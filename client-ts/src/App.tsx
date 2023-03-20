@@ -13,9 +13,14 @@ const App: React.FC = () => {
     <Container maxWidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className={classes.heading} variant="h2" align="center">
-          Pensieve
+          {/* Pensieve */}
+          <img
+            className={classes.image}
+            src={pensieve}
+            alt="icon"
+            height="200"
+          />
         </Typography>
-        <img className={classes.image} src={pensieve} alt="icon" height="600" />
       </AppBar>
       <Grow in>
         <Container>

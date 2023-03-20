@@ -21,6 +21,7 @@ exports.getPosts = getPosts;
 const createPost = async (req, res) => {
     const post = req.body;
     const newPost = new postMessage_1.default(post);
+    console.log(newPost);
     try {
         await newPost.save();
         res.status(201).json(newPost);
